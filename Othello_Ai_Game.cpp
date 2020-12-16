@@ -246,18 +246,21 @@ bool computerPlay(void) {
 		for (int y = 0; y < 8; y++) {
 			for (int x = 0; x < 8; x++) {
 				if (comPossPoint[y][x] == 1) {//가능한 자리
-					if (comX < 0 && comY < 0) {
+					//if (comX < 0 && comY < 0) {
 						int tempPoss = countPossible(x, y);
 						if (mostPoss < tempPoss) {
 							mostPoss = tempPoss;//가장 검은돌 많이 뒤집을 수 있는 곳 저장
 							comX = x, comY = y;
 						}
-					}
+					//}
 				}
 			}
 		}
-		setState(comX, comY, State::WHITE);
-		reverse(comX, comY);
+		//여기 반드시 필요
+		if (comX >= 0 && comY >= 0) {
+			setState(comX, comY, State::WHITE);
+			reverse(comX, comY);
+		}
 
 
 		turn = Turn::BLACK;
